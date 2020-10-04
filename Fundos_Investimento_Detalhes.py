@@ -10,7 +10,7 @@ import pyodbc
 
 # In[2]:
 
-
+# Função que executa o download dos dados detalhados do fundo de investimento a partir de seu CNPJ
 def carregaDadosFundo(cnpj):
     sessao = requests.session()
     headers = {
@@ -45,7 +45,7 @@ def carregaDadosFundo(cnpj):
 
 # In[3]:
 
-
+# Função que insere os dados do fundo em banco de dados SQL Server
 def carregaDadosFundoBanco(respJSON):
     cursor = cnxn.cursor()
 
@@ -121,7 +121,7 @@ def carregaDadosFundoBanco(respJSON):
 
 # In[4]:
 
-
+# Função que percorrea o dataset se fundos e executa o download dos dados para cada um deles.
 def preencheDetalhesFundos():
     cursor = cnxn.cursor()
     cursor.execute("""SELECT cnpj

@@ -13,7 +13,7 @@ sessao = requests.session()
 
 # In[56]:
 
-
+# Função para carregamento das rentabilidade dos fundos de investimento
 def carregaRentabilidadesFundo(cnpj):
     pageContent=sessao.get(
          'https://assets-comparacaodefundos.s3-sa-east-1.amazonaws.com/cvm/' + '{:014d}'.format(cnpj)
@@ -140,7 +140,7 @@ def carregaRentabilidadesFundo(cnpj):
 
 # In[57]:
 
-
+# Função para carregamento dos dados dos fundos de investimento
 def carregaFundos():
     pageContent=sessao.get(
          'https://assets-comparacaodefundos.s3-sa-east-1.amazonaws.com/cvm/fundos'
@@ -191,7 +191,7 @@ def carregaFundos():
 
 # In[58]:
 
-
+# Função que percorre os fundos carregados e executa o download das rentabilidades para cada um deles.
 def preencheRentabilidadesFundos():
     cursor = cnxn.cursor()
     cursor.execute("""SELECT *
@@ -232,7 +232,7 @@ cnxn.close()
 
 # In[15]:
 
-
+# Função que executa o download dos dados do índice de beachmark CDI
 def carregaRentabilidadesCDI():
     pageContent=sessao.get(
          'https://assets-comparacaodefundos.s3-sa-east-1.amazonaws.com/cvm/cdi'
